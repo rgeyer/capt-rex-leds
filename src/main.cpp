@@ -92,15 +92,18 @@ void loop()
     for (int i = 0; i <= 2; i++)
     {
       // For red
-      strip.setPixelColor(i, strip.Color(bar.getPixel(i), 0, 0));
+      // strip.setPixelColor(i, strip.Color(bar.getPixel(i), 0, 0));
       // For blue
-      // strip.setPixelColor(i, strip.Color(0, 0, bar.getPixel(i)));
+      strip.setPixelColor(i, strip.Color(0, 0, bar.getPixel(i)));
     }
     strip.show();
   }
-  if (digitalRead(BUTTON_PIN) == LOW)
+  int switchState = digitalRead(BUTTON_PIN);
+  if (switchState == LOW)
   {
-    run = !run;
+    run = true;    
+  } else {
+    run = false;
     strip.clear();
     strip.show();
     delay(500);
